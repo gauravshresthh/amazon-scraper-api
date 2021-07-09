@@ -41,12 +41,12 @@ app.get('/products/:productID/reviews', async (req, res) => {
 	}
 });
 
-app.get('/products/:productID/offers', async (req, res) => {
-	const { productID } = req.params;
+app.get('/search/:searchQuery', async (req, res) => {
+	const { searchQuery } = req.params;
 
 	try {
 		const response = await request(
-			`${SCRAPER_API_URL}&url=https://www.amazon.com/gp/offer-listing/${productID}`
+			`${SCRAPER_API_URL}&url=https://www.amazon.com/s?k=${searchQuery}`
 		);
 		return res.json(JSON.parse(response));
 	} catch (error) {
